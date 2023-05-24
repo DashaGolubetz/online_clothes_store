@@ -20,6 +20,12 @@ public class UserEntity {
 
     }
 
+    public UserEntity(String name, String password, String role) {
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
     public UserEntity(int id, String name, String password, String role) {
         this.id = id;
         this.name = name;

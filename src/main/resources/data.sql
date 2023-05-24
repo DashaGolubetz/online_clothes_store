@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS "user" (
 );
 
 MERGE INTO "user"
-    (id, name, password, role)
-    KEY (id)
-VALUES (1, 'admin', '$2a$12$nHT5mlzjQTjMxMNzCkZ5Qu2B0A/BJ86SwQgl55P/JFNLa/gbnvzNC', 'ROLE_ADMIN');
+    (name, password, role)
+    KEY (name)
+VALUES ('admin', '$2a$12$nHT5mlzjQTjMxMNzCkZ5Qu2B0A/BJ86SwQgl55P/JFNLa/gbnvzNC', 'ROLE_ADMIN');

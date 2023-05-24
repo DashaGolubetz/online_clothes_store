@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Регистрация</title>
+    </head>
+
+    <body>
+        <form th:action="@{/register}" th:method="POST" th:object="${user}">
+            <label for="name">Имя пользователя:</label>
+            <input id="name" th:field="*{name}" type="text">
+
+            <label for="password">Пароль:</label>
+            <input id="password" th:field="*{password}" type="password">
+
+            <label for="confirmedPassword">Подтверждения пароля:</label>
+            <input id="confirmedPassword" th:field="*{confirmedPassword}" type="password">
+
+            <input type="submit" value="Зарегистрироваться">
+	    </form>
+    </body>
+</html>
