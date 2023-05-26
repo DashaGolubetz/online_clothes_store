@@ -9,18 +9,28 @@
     </head>
 
     <body>
-        <form th:action="@{/login}" th:method="POST">
-            <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden">
+		<header>
+			<ul>
+				<li><a th:href="@{/}">Главная</a></li>
+			</ul>
+		</header>
 
-            <label for="username">Имя пользователя:</label>
-            <input id="username" name="username" type="text">
+        <main>
+            <h1>Вход</h1>
 
-            <label for="password">Пароль:</label>
-            <input id="password" name="password" type="password">
-
-            <input type="submit" value="Войти">
-
-            <p style="color: red" th:if="${param.error}">Неверные имя пользователя и/или пароль.</p>
-	    </form>
+            <form th:action="@{/login}" th:method="POST">
+                <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden">
+    
+                <label for="username">Имя пользователя:</label>
+                <input id="username" name="username" type="text">
+    
+                <label for="password">Пароль:</label>
+                <input id="password" name="password" type="password">
+    
+                <input type="submit" value="Войти">
+    
+                <p style="color: red" th:if="${param.error}">Неверные имя пользователя и/или пароль.</p>
+            </form>
+        </main>
     </body>
 </html>

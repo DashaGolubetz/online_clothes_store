@@ -9,17 +9,27 @@
     </head>
 
     <body>
-        <form th:action="@{/register}" th:method="POST" th:object="${user}">
-            <label for="name">Имя пользователя:</label>
-            <input id="name" th:field="*{name}" type="text">
+		<header>
+			<ul>
+				<li><a th:href="@{/}">Главная</a></li>
+			</ul>
+		</header>
 
-            <label for="password">Пароль:</label>
-            <input id="password" th:field="*{password}" type="password">
+        <main>
+            <h1>Регистрация</h1>
 
-            <label for="confirmedPassword">Подтверждения пароля:</label>
-            <input id="confirmedPassword" th:field="*{confirmedPassword}" type="password">
-
-            <input type="submit" value="Зарегистрироваться">
-	    </form>
+            <form th:action="@{/register}" th:method="POST" th:object="${user}">
+                <label for="name">Имя пользователя:</label>
+                <input id="name" th:field="*{name}" type="text">
+    
+                <label for="password">Пароль:</label>
+                <input id="password" th:field="*{password}" type="password">
+    
+                <label for="confirmedPassword">Подтверждения пароля:</label>
+                <input id="confirmedPassword" th:field="*{confirmedPassword}" type="password">
+    
+                <input type="submit" value="Зарегистрироваться">
+            </form>
+        </main>
     </body>
 </html>

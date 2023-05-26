@@ -22,23 +22,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
-                    authorizationManagerRequestMatcherRegistry.anyRequest().permitAll();
-                })
-                .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer.loginPage("/login");
-                    httpSecurityFormLoginConfigurer.loginProcessingUrl("/login");
-                    httpSecurityFormLoginConfigurer.failureUrl("/login");
-                    httpSecurityFormLoginConfigurer.defaultSuccessUrl("/", true);
-                })
-                .logout(httpSecurityLogoutConfigurer -> {
-                    httpSecurityLogoutConfigurer.logoutUrl("/logout");
-                    httpSecurityLogoutConfigurer.logoutSuccessUrl("/");
-                })
-                .userDetailsService(userDetailsService)
-                .httpBasic(Customizer.withDefaults())
-                .build();
+        return httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
+            authorizationManagerRequestMatcherRegistry.anyRequest().permitAll();
+        }).formLogin(httpSecurityFormLoginConfigurer -> {
+            httpSecurityFormLoginConfigurer.loginPage("/login");
+            httpSecurityFormLoginConfigurer.loginProcessingUrl("/login");
+            httpSecurityFormLoginConfigurer.failureUrl("/login");
+            httpSecurityFormLoginConfigurer.defaultSuccessUrl("/", true);
+        }).logout(httpSecurityLogoutConfigurer -> {
+            httpSecurityLogoutConfigurer.logoutUrl("/logout");
+            httpSecurityLogoutConfigurer.logoutSuccessUrl("/");
+        }).userDetailsService(userDetailsService).httpBasic(Customizer.withDefaults()).build();
     }
 
     @Bean
