@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -20,6 +21,8 @@ public class ProductEntity {
     private String description;
     @Column(name = "price")
     private BigDecimal price;
+    @ManyToMany(mappedBy = "cartProductEntities")
+    private List<UserEntity> cartUserEntities;
 
     @Contract(pure = true)
     public ProductEntity() {
@@ -34,11 +37,12 @@ public class ProductEntity {
     }
 
     @Contract(pure = true)
-    public ProductEntity(int id, String title, String description, BigDecimal price) {
+    public ProductEntity(int id, String title, String description, BigDecimal price, List<UserEntity> cartUserEntities) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.cartUserEntities = cartUserEntities;
     }
 
     @Contract(value = "_ -> new", pure = true)
@@ -76,5 +80,13 @@ public class ProductEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<UserEntity> getCartUserEntities() {
+        return cartUserEntities;
+    }
+
+    public void setCartUserEntities(List<UserEntity> cartUserEntities) {
+        this.cartUserEntities = cartUserEntities;
     }
 }

@@ -11,10 +11,12 @@ public class ProductDTO {
     private String description;
     private BigDecimal price;
 
+    @Contract(pure = true)
     public ProductDTO() {
 
     }
 
+    @Contract(pure = true)
     public ProductDTO(String title, String description, BigDecimal price) {
         this.title = title;
         this.description = description;

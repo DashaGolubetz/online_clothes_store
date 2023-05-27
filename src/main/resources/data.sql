@@ -12,6 +12,12 @@ CREATE TABLE IF NOT EXISTS "product" (
     price DECIMAL(10, 2) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS "cart" (
+    user_id INTEGER NOT NULL REFERENCES "user" (id),
+    product_id INTEGER NOT NULL REFERENCES "product" (id),
+    PRIMARY KEY (user_id, product_id)
+);
+
 MERGE INTO "user"
     (name, password, role)
     KEY (name)

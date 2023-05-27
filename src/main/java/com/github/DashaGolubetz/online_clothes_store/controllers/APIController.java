@@ -1,6 +1,5 @@
 package com.github.DashaGolubetz.online_clothes_store.controllers;
 
-import com.github.DashaGolubetz.online_clothes_store.dtos.ProductDTO;
 import com.github.DashaGolubetz.online_clothes_store.entities.ProductEntity;
 import com.github.DashaGolubetz.online_clothes_store.services.ProductService;
 import org.jetbrains.annotations.Contract;
@@ -30,10 +29,10 @@ public class APIController {
     }
 
     @GetMapping(value = "/products/{id}")
-    public ProductDTO viewProduct(@PathVariable(value = "id") int id) {
-        Optional<ProductDTO> productDTO = productService.findById(id);
+    public ProductEntity viewProduct(@PathVariable(value = "id") int id) {
+        Optional<ProductEntity> productEntity = productService.findById(id);
 
-        if (productDTO.isPresent()) return productDTO.get();
+        if (productEntity.isPresent()) return productEntity.get();
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Такой товар не найден.");
     }

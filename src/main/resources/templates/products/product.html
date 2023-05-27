@@ -24,6 +24,10 @@
 				<p th:text="'Описание: ' + ${product.description}">Описание товара</p>
 
 				<p th:text="'Цена: ' + ${product.price} + '₽'">Цена товара</p>
+
+				<form sec:authorize="isAuthenticated()" th:if="${is_present}" th:action="@{/products/{id}/add(id=${product.id})}" th:method="POST">
+					<input type="submit" value="Добавить в корзину">
+				</form>
 			</div>
 		</main>
 	</body>

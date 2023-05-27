@@ -9,10 +9,12 @@ public class UserDTO {
     private String password;
     private String confirmedPassword;
 
+    @Contract(pure = true)
     public UserDTO() {
 
     }
 
+    @Contract(pure = true)
     public UserDTO(String name, String password, String confirmedPassword) {
         this.name = name;
         this.password = password;

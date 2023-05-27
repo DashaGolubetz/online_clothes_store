@@ -5,12 +5,13 @@ import com.github.DashaGolubetz.online_clothes_store.entities.ProductEntity;
 import com.github.DashaGolubetz.online_clothes_store.repositories.ProductRepository;
 import org.jetbrains.annotations.Contract;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class ProductService {
     private final ProductRepository productRepository;
 
@@ -23,9 +24,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<ProductDTO> findById(int id) {
-        Optional<ProductEntity> productEntity = productRepository.findById(id);
-
-        return productEntity.map(ProductEntity::convertToProductDTO);
+    public Optional<ProductEntity> findById(int id) {
+        return productRepository.findById(id);
     }
 }
