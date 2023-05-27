@@ -21,16 +21,19 @@ public class ProductEntity {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Contract(pure = true)
     public ProductEntity() {
 
     }
 
+    @Contract(pure = true)
     public ProductEntity(String title, String description, BigDecimal price) {
         this.title = title;
         this.description = description;
         this.price = price;
     }
 
+    @Contract(pure = true)
     public ProductEntity(int id, String title, String description, BigDecimal price) {
         this.id = id;
         this.title = title;

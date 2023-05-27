@@ -1,6 +1,7 @@
 package com.github.DashaGolubetz.online_clothes_store.controllers;
 
 import com.github.DashaGolubetz.online_clothes_store.services.ProductService;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
     private final ProductService productService;
 
+    @Contract(pure = true)
     public IndexController(ProductService productService) {
         this.productService = productService;
     }

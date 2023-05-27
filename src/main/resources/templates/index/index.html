@@ -19,9 +19,9 @@
 			<h1>Товары</h1>
 
 			<div th:each="product : ${products}">
-				<p th:text="${product.title}"></p>
-				<p th:text="${product.description}"></p>
-				<p th:text="${product.price}"></p>
+				<a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.title}">Название товара</p></a>
+				<p th:text="${product.description}">Описание товара</p>
+				<p th:text="${product.price}">Цена товара</p>
 			</div>
 		</main>
 	</body>

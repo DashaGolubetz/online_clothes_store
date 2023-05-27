@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title th:txt="${product.title}">Название товара</title>
+	</head>
+
+	<body>
+		<header>
+			<ul>
+				<li><a th:href="@{/}">Главная</a></li>
+			</ul>
+		</header>
+
+		<main>
+			<h1>Информация о товаре</h1>
+
+			<div>
+				<h3 th:text="'Название: ' + ${product.title}">Название товара</h3>
+
+				<p th:text="'Описание: ' + ${product.description}">Описание товара</p>
+
+				<p th:text="'Цена: ' + ${product.price} + '₽'">Цена товара</p>
+			</div>
+		</main>
+	</body>
+</html>
