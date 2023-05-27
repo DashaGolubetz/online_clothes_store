@@ -30,6 +30,7 @@ public class ProductController {
 
             return "products/product";
         }
-        else return "redirect:/";
+
+        return "redirect:/";
     }
 }
