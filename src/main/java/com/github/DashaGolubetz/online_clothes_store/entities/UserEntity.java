@@ -14,8 +14,10 @@ public class UserEntity {
     private int id;
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", unique = true, nullable = false)
     private String password;
+    @Column(name = "email", nullable = false)
+    private String email;
     @Column(name = "role", nullable = false)
     private String role;
     @ManyToMany
@@ -32,17 +34,19 @@ public class UserEntity {
     }
 
     @Contract(pure = true)
-    public UserEntity(String name, String password, String role) {
+    public UserEntity(String name, String password, String email, String role) {
         this.name = name;
         this.password = password;
+        this.email = email;
         this.role = role;
     }
 
     @Contract(pure = true)
-    public UserEntity(int id, String name, String password, String role, List<ProductEntity> cartProductEntities) {
+    public UserEntity(int id, String name, String password, String email, String role, List<ProductEntity> cartProductEntities) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.email = email;
         this.role = role;
         this.cartProductEntities = cartProductEntities;
     }
@@ -69,6 +73,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRole() {

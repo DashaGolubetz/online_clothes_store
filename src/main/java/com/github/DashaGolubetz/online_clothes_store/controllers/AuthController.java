@@ -2,6 +2,7 @@ package com.github.DashaGolubetz.online_clothes_store.controllers;
 
 import com.github.DashaGolubetz.online_clothes_store.dtos.UserDTO;
 import com.github.DashaGolubetz.online_clothes_store.services.UserService;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
     private final UserService userService;
 
+    @Contract(pure = true)
     public AuthController(UserService userService) {
         this.userService = userService;
     }

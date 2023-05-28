@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class UserDTO {
     private String name;
     private String password;
+    private String email;
     private String confirmedPassword;
 
     @Contract(pure = true)
@@ -15,15 +16,16 @@ public class UserDTO {
     }
 
     @Contract(pure = true)
-    public UserDTO(String name, String password, String confirmedPassword) {
+    public UserDTO(String name, String password, String confirmedPassword, String email) {
         this.name = name;
         this.password = password;
         this.confirmedPassword = confirmedPassword;
+        this.email = email;
     }
 
     @Contract(value = "_, _ -> new", pure = true)
     public static @NotNull UserEntity convertToUserEntity(@NotNull UserDTO userDTO, String role) {
-        return new UserEntity(userDTO.name, userDTO.password, role);
+        return new UserEntity(userDTO.name, userDTO.password, userDTO.email, role);
     }
 
     public String getName() {
@@ -48,5 +50,13 @@ public class UserDTO {
 
     public void setConfirmedPassword(String confirmedPassword) {
         this.confirmedPassword = confirmedPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
