@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Contract;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,12 +19,26 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public Optional<Integer> findProductInCart(int userId, int productId) {
-        return cartRepository.findProductIdInCart(userId, productId);
+    public Optional<ProductEntity> findProductInCart(int userId, int productId) {
+        return cartRepository.findProductInCart(userId, productId);
     }
 
     @Transactional
-    public void addToCart(int userId, int productId) {
-        cartRepository.addToCart(userId, productId);
+    public void addProductToCart(int userId, int productId) {
+        cartRepository.addProductToCart(userId, productId);
+    }
+
+    public List<ProductEntity> findAllProductsInCart(int userId) {
+        return cartRepository.findAllProductsInCart(userId);
+    }
+
+    @Transactional
+    public void removeProductFromCart(int userId, int productId) {
+        cartRepository.removeProductFromCart(userId, productId);
+    }
+
+    @Transactional
+    public void clearCart(int userId) {
+        cartRepository.clearCart(userId);
     }
 }

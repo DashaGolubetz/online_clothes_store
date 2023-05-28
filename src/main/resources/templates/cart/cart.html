@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Товары</title>
+		<title>Корзина</title>
 	</head>
 
 	<body>
@@ -16,16 +16,28 @@
 		</header>
 
 		<main>
-			<h1>Товары</h1>
+			<h1>Корзина</h1>
 
-			<div>
+			<div th:if="${products}">
 				<div th:each="product : ${products}">
 					<a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.title}">Название товара</p></a>
 
 					<p th:text="${product.description}">Описание товара</p>
 					
 					<p th:text="${product.price}">Цена товара</p>
+
+					<form th:action="@{/cart/{id}/remove(id=${product.id})}" th:method="POST">
+						<input type="submit" value="Удалить">
+					</form>
 				</div>
+
+				<form th:if="${#lists.size(products) > 0}" th:action="@{/cart}" th:method="POST">
+					<input type="submit" value="Оформить заказ">
+				</form>
+			</div>
+
+			<div th:if="${is_order_made}">
+				<p>Вы успешно оформили заказ. В скором времени мы свяжемся с Вами по электронной почте.</p>
 			</div>
 		</main>
 	</body>

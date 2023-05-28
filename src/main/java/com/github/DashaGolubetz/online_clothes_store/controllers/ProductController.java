@@ -45,7 +45,7 @@ public class ProductController {
 
     @PostMapping(value = "/{id}/add")
     public String addProductToCart(@PathVariable(value = "id") int productId) {
-        cartService.addToCart(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId(), productId);
+        cartService.addProductToCart(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId(), productId);
 
         return "redirect:/";
     }
