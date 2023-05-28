@@ -30,6 +30,7 @@
                 <input id="password" th:field="*{password}" type="password">
                 <label for="confirmedPassword">Подтверждения пароля:</label>
                 <input id="confirmedPassword" th:field="*{confirmedPassword}" type="password">
+                <span style="color: red" th:errors="*{confirmedPassword}" th:if="@{#fields.hasErrors('confirmedPassword')}">Ошибки в подтверждении пароля.</span>
                 <label for="email">Электронная почта:</label>
                 <input id="email" th:field="*{email}" type="text">
     
