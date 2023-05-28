@@ -25,6 +25,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
+            authorizationManagerRequestMatcherRegistry.requestMatchers("/login", "/register").anonymous();
+            authorizationManagerRequestMatcherRegistry.requestMatchers("/products/add").hasRole("ADMIN");
+            authorizationManagerRequestMatcherRegistry.requestMatchers("/cart").authenticated();
             authorizationManagerRequestMatcherRegistry.anyRequest().permitAll();
         }).formLogin(httpSecurityFormLoginConfigurer -> {
             httpSecurityFormLoginConfigurer.loginPage("/login");
