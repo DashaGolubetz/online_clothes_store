@@ -12,6 +12,11 @@
 		<header>
 			<ul>
 				<li><a th:href="@{/}">Главная</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/cart}">Корзина</a></li>
+				<li sec:authorize="isAnonymous()"><a th:href="@{/login}">Вход</a></li>
+				<form sec:authorize="isAuthenticated()" style="display: inline;" th:action=@{/logout} th:method="POST">
+					<input type="submit" value="Выйти">
+				</form>
 			</ul>
 		</header>
 
