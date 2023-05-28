@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title th:txt="${product.title}">Название товара</title>
+		<title th:text="${product.title}">Название товара</title>
 	</head>
 
 	<body>
@@ -32,6 +32,10 @@
 
 				<form sec:authorize="isAuthenticated()" th:if="${is_present}" th:action="@{/products/{id}/add(id=${product.id})}" th:method="POST">
 					<input type="submit" value="Добавить в корзину">
+				</form>
+
+				<form sec:authorize="hasRole('ADMIN')" th:action="@{/products/{id}/delete(id=${product.id})}" th:method="DELETE">
+					<input type="submit" value="Удалить (admin)">
 				</form>
 			</div>
 		</main>

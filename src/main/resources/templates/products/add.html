@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Товары</title>
+		<title>Добавить товар</title>
 	</head>
 
 	<body>
@@ -21,19 +21,17 @@
 		</header>
 
 		<main>
-			<h1>Товары</h1>
+			<h1>Добавить товар</h1>
 
-			<div>
-				<div th:each="product : ${products}">
-					<a th:href="@{/products/{id}(id=${product.id})}"><p th:text="${product.title}">Название товара</p></a>
-
-					<p th:text="${product.description}">Описание товара</p>
-					
-					<p th:text="${product.price}">Цена товара</p>
-				</div>
-			</div>
-
-			<p sec:authorize="hasRole('ADMIN')"><a th:href="@{/products/add}">Добавить товар (admin)</a></p>
+			<form th:action="@{/products/add}" th:method="POST" th:object=${product}>
+				<label for="title">Название:</label>
+				<input id="title" type="text" th:field="*{title}">
+				<label for="description">Описание:</label>
+				<input id="description" type="text" th:field="*{description}">
+				<label for="price">Цена:</label>
+				<input id="price" type="text" th:field="*{price}">
+				<input type="submit" value="Добавить">
+			</form>
 		</main>
 	</body>
 </html>

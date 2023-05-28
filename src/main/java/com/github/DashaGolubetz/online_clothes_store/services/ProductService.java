@@ -24,6 +24,16 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    @Transactional
+    public void save(ProductDTO productDTO) {
+        productRepository.save(ProductDTO.convertToProductEntity(productDTO));
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        productRepository.deleteById(id);
+    }
+
     public Optional<ProductEntity> findById(int id) {
         return productRepository.findById(id);
     }

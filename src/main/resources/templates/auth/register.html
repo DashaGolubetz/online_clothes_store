@@ -25,14 +25,14 @@
 
             <form th:action="@{/register}" th:method="POST" th:object="${user}">
                 <label for="name">Имя пользователя:</label>
-                <input id="name" th:field="*{name}" type="text">
+                <input id="name" type="text" th:field="*{name}">
                 <label for="password">Пароль:</label>
-                <input id="password" th:field="*{password}" type="password">
+                <input id="password" type="password" th:field="*{password}">
                 <label for="confirmedPassword">Подтверждения пароля:</label>
-                <input id="confirmedPassword" th:field="*{confirmedPassword}" type="password">
-                <span style="color: red" th:errors="*{confirmedPassword}" th:if="@{#fields.hasErrors('confirmedPassword')}">Ошибки в подтверждении пароля.</span>
+                <input id="confirmedPassword" type="password" th:field="*{confirmedPassword}">
+                <span th:if="@{#fields.hasErrors('confirmedPassword')}" style="color: red" th:errors="*{confirmedPassword}">Ошибки в подтверждении пароля.</span>
                 <label for="email">Электронная почта:</label>
-                <input id="email" th:field="*{email}" type="text">
+                <input id="email" type="text" th:field="*{email}">
     
                 <input type="submit" value="Зарегистрироваться">
             </form>

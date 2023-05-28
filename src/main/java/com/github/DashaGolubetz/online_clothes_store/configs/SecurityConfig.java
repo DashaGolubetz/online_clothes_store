@@ -1,6 +1,7 @@
 package com.github.DashaGolubetz.online_clothes_store.configs;
 
 import com.github.DashaGolubetz.online_clothes_store.services.UserDetailsService;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
 
+    @Contract(pure = true)
     public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
