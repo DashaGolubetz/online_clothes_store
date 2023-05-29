@@ -2,6 +2,8 @@ package com.github.DashaGolubetz.online_clothes_store.controllers;
 
 import com.github.DashaGolubetz.online_clothes_store.entities.ProductEntity;
 import com.github.DashaGolubetz.online_clothes_store.services.ProductService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.jetbrains.annotations.Contract;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api")
+@Tag(name = "API контроллер", description = "Основной и единственный API контроллер в приложении.")
 public class APIController {
     private final ProductService productService;
 
@@ -24,11 +27,13 @@ public class APIController {
     }
 
     @GetMapping(value = "/products")
+    @ApiResponse(responseCode = "200", description = "Возвращает информацию обо всех товарах.")
     public List<ProductEntity> index() {
         return productService.findAll();
     }
 
     @GetMapping(value = "/products/{id}")
+    @ApiResponse(responseCode = "200", description = "Возвращает подробную информацию о конкретном товаре.")
     public ProductEntity viewProduct(@PathVariable(value = "id") int id) {
         Optional<ProductEntity> productEntity = productService.findById(id);
 
