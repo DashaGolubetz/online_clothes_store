@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * {@link Controller}, отвечающий за запросы к главной странице приложения по адресу "/**"
+ * {@link Controller}, отвечающий за запросы к главной странице приложения по адресу "/**".
  */
 @Controller
 @RequestMapping(value = "")

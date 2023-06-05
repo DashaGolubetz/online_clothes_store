@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * {@link Controller}, отвечающий за запросы, связанные с корзиной, к приложению по адресу "/cart/**"
+ * {@link Controller}, отвечающий за запросы, связанные с корзиной, к приложению по адресу "/cart/**".
  */
 @Controller
 @RequestMapping(value = "/cart")

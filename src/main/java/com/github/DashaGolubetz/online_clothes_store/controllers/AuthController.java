@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * {@link Controller}, отвечающий за авторизационные запросы к приложению по адресу "/**"
+ * {@link Controller}, отвечающий за авторизационные запросы к приложению по адресу "/**".
  */
 @Controller
 @RequestMapping(value = "")

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * {@link RestController}, отвечающий за все возможные API-запросы к приложению по адресу "/api/**"
+ * {@link RestController}, отвечающий за все возможные API-запросы к приложению по адресу "/api/**".
  */
 @RestController
 @RequestMapping(value = "/api")

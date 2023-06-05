@@ -19,7 +19,7 @@ import java.security.Principal;
 import java.util.Optional;
 
 /**
- * {@link Controller}, отвечающий за запросы, связанные с товарами к приложению по адресу "/products"
+ * {@link Controller}, отвечающий за запросы, связанные с товарами к приложению по адресу "/products".
  */
 @Controller
 @RequestMapping(value = "/products")
