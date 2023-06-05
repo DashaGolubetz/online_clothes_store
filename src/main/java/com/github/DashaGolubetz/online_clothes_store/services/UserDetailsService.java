@@ -2,6 +2,7 @@ package com.github.DashaGolubetz.online_clothes_store.services;
 
 import com.github.DashaGolubetz.online_clothes_store.entities.UserEntity;
 import com.github.DashaGolubetz.online_clothes_store.repositories.UserRepository;
+import org.jetbrains.annotations.Contract;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     private final UserRepository userRepository;
 
+    @Contract(pure = true)
     public UserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
