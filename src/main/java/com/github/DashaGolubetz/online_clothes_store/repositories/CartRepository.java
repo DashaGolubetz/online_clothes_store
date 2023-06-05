@@ -10,8 +10,18 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Класс, предоставляющий соединение с базой данных и представляющий абстракцию для отправления запросов к ней (к таблице "cart").
+ */
 @Repository
 public interface CartRepository extends JpaRepository<ProductEntity, Integer> {
+    /**
+     * Запрос, возвращающий товар по {productId} в корзине у пользователя по {userId}.
+     *
+     * @param userId    идентификатор пользователя.
+     * @param productId идентификатор товара.
+     * @return {@link Optional}<{@link ProductEntity}> (товар или пустое значение).
+     */
     @Query(value = "SELECT p.id, p.title, p.description, p.price " +
             "FROM \"product\" p " +
             "JOIN \"cart\" c ON  p.id = c.product_id " +
@@ -22,10 +32,22 @@ public interface CartRepository extends JpaRepository<ProductEntity, Integer> {
             @Param(value = "product_id") int productId
     );
 
+    /**
+     * Запрос, добавляющий товар по {productId} в корзину к пользователю по {userId}.
+     *
+     * @param userId    идентификатор пользователя.
+     * @param productId идентификатор товара.
+     */
     @Modifying
     @Query(value = "INSERT INTO \"cart\" VALUES (:user_id, :product_id)", nativeQuery = true)
     void addProductToCart(@Param(value = "user_id") int userId, @Param(value = "product_id") int productId);
 
+    /**
+     * Запрос, возвращающий список всех товаров в корине у пользователя по {userId}.
+     *
+     * @param userId идентификатор пользователя.
+     * @return {@link List}<{@link ProductEntity}> (список товаров).
+     */
     @Query(value = "SELECT p.id, p.title, p.description, p.price " +
             "FROM \"product\" p " +
             "JOIN \"cart\" c ON c.product_id = p.id " +
@@ -33,10 +55,21 @@ public interface CartRepository extends JpaRepository<ProductEntity, Integer> {
             "WHERE u.id = :user_id", nativeQuery = true)
     List<ProductEntity> findAllProductsInCart(@Param(value = "user_id") int userId);
 
+    /**
+     * Запрос, удаляющий товар по {productId} из корзины пользователя по {userId}.
+     *
+     * @param userId    идентификатор пользователя.
+     * @param productId идентификатор товара.
+     */
     @Modifying
     @Query(value = "DELETE FROM \"cart\" WHERE user_id = :user_id AND product_id = :product_id", nativeQuery = true)
     void removeProductFromCart(@Param(value = "user_id") int userId, @Param(value = "product_id") int productId);
 
+    /**
+     * Запрос, очищающий коризну пользователя по {userId}.
+     *
+     * @param userId идентификатор пользователя.
+     */
     @Modifying
     @Query(value = "DELETE FROM \"cart\" WHERE user_id = :user_id", nativeQuery = true)
     void clearCart(@Param(value = "user_id") int userId);
