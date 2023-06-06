@@ -43,6 +43,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<ProductDTO> findAllAndConvertToDTOS() {
+        return productRepository.findAll().stream().map(ProductEntity::convertToProductDTO).toList();
+    }
+
     /**
      * Функция, обращающаяся к функции репозитория, совершающей запрос к базе данных, добавляющий товар.
      */
@@ -67,5 +71,9 @@ public class ProductService {
      */
     public Optional<ProductEntity> findById(int productId) {
         return productRepository.findById(productId);
+    }
+
+    public ProductDTO findByIdAndConvertToDTO(int productId) {
+        return productRepository.findById(productId).map(ProductEntity::convertToProductDTO).orElse(null);
     }
 }

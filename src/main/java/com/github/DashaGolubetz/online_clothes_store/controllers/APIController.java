@@ -1,5 +1,6 @@
 package com.github.DashaGolubetz.online_clothes_store.controllers;
 
+import com.github.DashaGolubetz.online_clothes_store.dtos.ProductDTO;
 import com.github.DashaGolubetz.online_clothes_store.entities.ProductEntity;
 import com.github.DashaGolubetz.online_clothes_store.services.ProductService;
 import com.github.DashaGolubetz.online_clothes_store.services.UserDetailsService;
@@ -30,6 +31,7 @@ public class APIController {
 
     /**
      * Стандартный конструктор, в котором содержатся все final-поля (бины, подгружаемые Spring'ом автоматически).
+     *
      * @param productService
      */
     @Contract(pure = true)
@@ -39,25 +41,27 @@ public class APIController {
 
     /**
      * Функция, возвращающая информацию обо всех товарах (GET: "/api/products").
+     *
      * @return {@link List}<{@link ProductEntity}> (список всех товаров).
      */
     @GetMapping(value = "/products")
     @ApiResponse(responseCode = "200", description = "Возвращает информацию обо всех товарах.")
-    public List<ProductEntity> index() {
-        return productService.findAll();
+    public List<ProductDTO> index() {
+        return productService.findAllAndConvertToDTOS();
     }
 
     /**
-     * Функция, возвращающая информацию о товаре (GET: "/api/products/{id}").
-     * @param id идентификатор товара.
+     * Функция, возвращающая информацию о товаре (GET: "/api/products/{productId}").
+     *
+     * @param productId идентификатор товара.
      * @return {@link ProductEntity} (товар).
      */
-    @GetMapping(value = "/products/{id}")
+    @GetMapping(value = "/products/{productId}")
     @ApiResponse(responseCode = "200", description = "Возвращает подробную информацию о конкретном товаре.")
-    public ProductEntity viewProduct(@PathVariable(value = "id") int id) {
-        Optional<ProductEntity> productEntity = productService.findById(id);
+    public ProductDTO viewProduct(@PathVariable(value = "productId") int productId) {
+        ProductDTO productDTO = productService.findByIdAndConvertToDTO(productId);
 
-        if (productEntity.isPresent()) return productEntity.get();
+        if (productDTO != null) return productDTO;
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Такой товар не найден.");
     }
