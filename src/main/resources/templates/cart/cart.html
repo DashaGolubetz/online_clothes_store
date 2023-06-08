@@ -39,6 +39,10 @@
 				<form th:if="${#lists.size(products) > 0}" th:action="@{/cart}" th:method="POST">
 					<input type="submit" value="Оформить заказ">
 				</form>
+
+				<form th:if="${#lists.size(products) > 0}" th:action="@{/cart/flush}" th:method="POST">
+					<input type="submit" value="Очистить корзину">
+				</form>
 			</div>
 
 			<div th:if="${is_order_made}">

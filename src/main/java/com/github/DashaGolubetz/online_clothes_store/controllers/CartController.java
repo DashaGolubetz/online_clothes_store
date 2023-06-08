@@ -71,4 +71,14 @@ public class CartController {
 
         return "cart/cart";
     }
+
+    /**
+     * Функция, очищающая корзину пользователя (POST: "/cart/flush").
+     */
+    @PostMapping(value = "/flush")
+    public String flushCart() {
+        cartService.clearCart(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
+
+        return "redirect:/cart";
+    }
 }
